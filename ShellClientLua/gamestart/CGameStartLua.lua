@@ -72,8 +72,8 @@ function CGameStartLua:Ctor()
     self:ShowWnd( false );
 	self.bHasData = false;
 	self.m_bShowTeachTip = false;
-	self.m_nSerialBad = 0;		--ÎŞ¾¡Ä£Ê½Á¬Ğø¡°²»ºÏ¸ñ¡±µÄ´ÎÊı
-	self.m_nEnterRoomNum = 0;	--±¾´ÎµÇÂ¼½øÈë·¿¼ä´ÎÊı  	
+	self.m_nSerialBad = 0;		--æ— å°½æ¨¡å¼è¿ç»­â€œä¸åˆæ ¼â€çš„æ¬¡æ•°
+	self.m_nEnterRoomNum = 0;	--æœ¬æ¬¡ç™»å½•è¿›å…¥æˆ¿é—´æ¬¡æ•°  	
 	self.m_tblRankData = {};
 	self.m_tblRankData.szFriendName = {};
 	self.m_tblRankData.nFriendScore = {};
@@ -89,9 +89,9 @@ function CGameStartLua:OnCreated()
 	self.m_mgrInstantMessageData = CInstantMessageDataMgr:new();
 
 	self.m_pNickName = self:GetDlgChild("wanjiaxinxi.name");
-	self.m_pHeadIcon = self:GetDlgChild("wanjiaxinxi.head.touxiang");--´Ë3ĞĞÊÇÍæ¼ÒĞÅÏ¢
+	self.m_pHeadIcon = self:GetDlgChild("wanjiaxinxi.head.touxiang");--æ­¤3è¡Œæ˜¯ç©å®¶ä¿¡æ¯
 	self.m_pWndLevel = self:GetDlgChild("wanjiaxinxi.W_duanwei");
-	self.m_pWndStarNum = self:GetDlgChild( "wanjiaxinxi.w_xingshu" );	--´«ËµµÄĞÇÊı
+	self.m_pWndStarNum = self:GetDlgChild( "wanjiaxinxi.w_xingshu" );	--ä¼ è¯´çš„æ˜Ÿæ•°
 	self.m_pBtnVip = self:GetDlgChild( "B_huiyuan" );
 	self.m_pWndDiamond = self:GetDlgChild( "zuanshi.jinbishuliang" );
 	self.m_pWndPresentDiamond =  self:GetDlgChild( "zengsongzuanshi.jinbishuliang" );
@@ -99,34 +99,34 @@ function CGameStartLua:OnCreated()
 	self.m_pWndCurTime = self:GetDlgChild( "shijian" );
 	self.m_pBtnFristChargePrize = self:GetDlgChild( "B_shouchong" );
 
-	self.m_pBtnSetting = self:GetDlgChild( "B_shezhi" );--½çÃæÓÒ±ßµÄÉèÖÃ
+	self.m_pBtnSetting = self:GetDlgChild( "B_shezhi" );--ç•Œé¢å³è¾¹çš„è®¾ç½®
 	self.m_pBtnSetting:AddActionListener( "OnSetting", self );
-	self.m_pBtnFriend = self:GetDlgChild( "B_shejiao" );--½çÃæÏÂ±ßµÄÉç½»
+	self.m_pBtnFriend = self:GetDlgChild( "B_shejiao" );--ç•Œé¢ä¸‹è¾¹çš„ç¤¾äº¤
 	self.m_pBtnFriend:AddActionListener( "OnFriend", self );
-															--ÎŞ¾¡Ä£Ê½¾ÍÊÇÁãÁ÷Á¿×ÔàË
-	self.m_pBtnEndless = self:GetDlgChild( "zhangjie.wujinmoshi" ); --1Ö÷Ò³ÃæµÄÎŞ¾¡Ä£Ê½
+															--æ— å°½æ¨¡å¼å°±æ˜¯é›¶æµé‡è‡ªå—¨
+	self.m_pBtnEndless = self:GetDlgChild( "zhangjie.wujinmoshi" ); --1ä¸»é¡µé¢çš„æ— å°½æ¨¡å¼
 	self.m_pBtnEndless:AddActionListener( "OnEnterEndless", self );
 
-	self.m_pBtnLimitTime = self:GetDlgChild( "zhangjie.xianshimoshi" );--2Ö÷Ò³ÃæÕæÈËÄ£Ê½
+	self.m_pBtnLimitTime = self:GetDlgChild( "zhangjie.xianshimoshi" );--2ä¸»é¡µé¢çœŸäººæ¨¡å¼
 	self.m_pBtnLimitTime:AddActionListener( "OnEnterLimitTime", self );
 
-	self.m_pBtnTeam = self:GetDlgChild( "zhangjie.tuandui" );--3Ö÷Ò³ÃæµÄÍÅ¶ÓÅÅÃûÄ£Ê½
+	self.m_pBtnTeam = self:GetDlgChild( "zhangjie.tuandui" );--3ä¸»é¡µé¢çš„å›¢é˜Ÿæ’åæ¨¡å¼
 	self.m_pBtnTeam:AddActionListener( "CreateEnterTeam", self );
 
-	self.m_pBtnHead = self:GetDlgChild( "wanjiaxinxi.head" ); --×óÉÏ½ÇÍæ¼ÒĞÅÏ¢
+	self.m_pBtnHead = self:GetDlgChild( "wanjiaxinxi.head" ); --å·¦ä¸Šè§’ç©å®¶ä¿¡æ¯
 	self.m_pBtnHead:AddActionListener( "OnClickHead", self );
 
-	self.m_pBtnShare = self:GetDlgChild( "B_fenxiang" ); --·ÖÏí¹¦ÄÜ
+	self.m_pBtnShare = self:GetDlgChild( "B_fenxiang" ); --åˆ†äº«åŠŸèƒ½
 	self.m_pBtnShare:AddActionListener( "OpenShareWnd", self );  
 
-	self.m_pBtnSkin = self:GetDlgChild( "B_pifu" );--½çÃæÏÂÃæµÄÆ¤·ô
+	self.m_pBtnSkin = self:GetDlgChild( "B_pifu" );--ç•Œé¢ä¸‹é¢çš„çš®è‚¤
 	self.m_pBtnSkin:AddActionListener( "OnClickSkin", self );
 
-	self.m_pGuide = self:GetDlgChild( "B_zhiyin" );--½çÃæÓÒ±ßµÄĞÂÊÖÖ¸Òı
+	self.m_pGuide = self:GetDlgChild( "B_zhiyin" );--ç•Œé¢å³è¾¹çš„æ–°æ‰‹æŒ‡å¼•
 	self.m_pGuide:AddActionListener( "OnClickGuide", self );
 	self.m_pGuide:GetDlgChild( "hongdian" ):ShowWnd( false );
 
-	self.m_btnTask = self:GetDlgChild( "B_renwu" );  --»î¶¯¹¦ÄÜ
+	self.m_btnTask = self:GetDlgChild( "B_renwu" );  --æ´»åŠ¨åŠŸèƒ½
 	self.m_btnTask:AddActionListener( "OnClickTaskBtn", self );
 
 	self.m_pBtnSkill = self:GetDlgChild( "B_jineng" );
@@ -137,11 +137,11 @@ function CGameStartLua:OnCreated()
 	self.m_pBtnRace:AddActionListener( "OnClickRace", self );
 	self.m_pWndConfirmJoin = CConfirmJoinWnd:new( "gui/cfg/fsj_goumaiqueren.gui", self, 1 );
 
-	self.m_btnRanking = self:GetDlgChild( "paihangbang" );--ÅÅĞĞ°ñ£¬Íæ¼Ò
+	self.m_btnRanking = self:GetDlgChild( "paihangbang" );--æ’è¡Œæ¦œï¼Œç©å®¶
 	self.m_btnRanking:AddEventListener( GM_WM_MOUSECLICK ,"OnClickRanking", self );
 
 	self.m_WndMusic = CWndMusic:new( "gui/cfg/fsj_yinyuexuanze3.gui", self, 1 );
-	self.m_BtnMusic = self:GetDlgChild( "B_yinyuexuanze" ); --ÒôÀÖÍ¼±ê
+	self.m_BtnMusic = self:GetDlgChild( "B_yinyuexuanze" ); --éŸ³ä¹å›¾æ ‡
 	self.m_BtnMusic:AddActionListener( "OnClickMusic", self );
 
 	self.m_WndTreasureBox = CWndTreasureBox:new( "gui/cfg/fsj_baoxiang.gui", self, 1 );
@@ -162,11 +162,11 @@ function CGameStartLua:OnCreated()
 	--shezhijiage
 	self.m_pWndMoney = self:GetDlgChild("jinbi.jinbishuliang");
 	self.m_pBtnAddMoney = self:GetDlgChild( "jinbi.btn_add" );
-	self.m_pBtnAddMoney:AddActionListener( "AddMoneyAnswer", self );--Ôö¼Ó½ğÏìÓ¦
+	self.m_pBtnAddMoney:AddActionListener( "AddMoneyAnswer", self );--å¢åŠ é‡‘å“åº”
 
 	self.m_pWndRainbowGold = self:GetDlgChild( "jinbi2.jinbishuliang" );
 	self.m_pBtnAddRainbowGold = self:GetDlgChild( "jinbi2.btn_add" );
-	self.m_pBtnAddRainbowGold:AddActionListener( "OnAddRainbowGold", self );--Ôö¼Ó²Êºç±Ò
+	self.m_pBtnAddRainbowGold:AddActionListener( "OnAddRainbowGold", self );--å¢åŠ å½©è™¹å¸
 	
 	self.m_pSettingWnd = CSettingWnd:new( "gui/cfg/fsj_shezhi.gui", self, 2 );
 	self.m_pLimitTimeWnd = CTeamWnd:new( "gui/cfg/fsj_xianshi.gui", self, 1, eMRT_Limit );
@@ -198,18 +198,18 @@ function CGameStartLua:OnCreated()
     self.m_pInvite = CInviteMsgBox:new( "gui/cfg/fsj_msgboxyesno.gui", self, 1 );
 
 	self.m_pWndRename = CWndRename:new( "gui/cfg/fsj_gaimingtishi.gui", self, 1 );
-	self.m_pWndNewLadderSeason = CWndNewLadderSeason:new( "gui/cfg/fsj_xinsaiji.gui", g_App:GetGUIMgr():GetRootWnd(), 1 );			--ÉÏÈü¼¾ÌìÌİ½±Àø¼°ÌìÌİ¼Ì³Ğ
+	self.m_pWndNewLadderSeason = CWndNewLadderSeason:new( "gui/cfg/fsj_xinsaiji.gui", g_App:GetGUIMgr():GetRootWnd(), 1 );			--ä¸Šèµ›å­£å¤©æ¢¯å¥–åŠ±åŠå¤©æ¢¯ç»§æ‰¿
 
 	self.m_pWndLimitTip = CWndLimitTip:new( "gui/cfg/fsj_xianshikaifangtishi.gui", self, 1 );
 	self.m_pWndTeamTip = CWndTeamTip:new( "gui/cfg/fsj_tuanzhankaifangtishi.gui", self, 1 );
 	self.m_WndModelOpenLimit = CWndModeLimit:new( "gui/cfg/fsj_moshikaifang.gui", self, 1 );
 	self.m_WndNewTreasureBox = CWndNewTreasureBox:new( "gui/cfg/fsj_pifu_baoxianghuode.gui", self, 1 );
 
-	-- ÓÎ¿ÍÉı¼¶ÌáÊ¾
+	-- æ¸¸å®¢å‡çº§æç¤º
 	self.m_WndGuestUpgrade = CWndGuestUpgrade:new( "gui/cfg/fsj_zhanghaozhuanzheng.gui", self, 2 );
 	self.m_WndGuestUpgradePrize = CWndGuestUpgradePrize:new( "gui/cfg/fsj_zhanghaozhuanzhengchenggong.gui", self, 2 );
 
-	--¼Ò×å½çÃæ 
+	--å®¶æ—ç•Œé¢ 
 	self.m_BtnClan = self:GetDlgChild( "B_jiazu" );
 	self.m_BtnClan:AddActionListener( "OnClickClan", self );
 	self.m_WndClan = CWndClan:new( "gui/cfg/fsj_jiazu_dikuang.gui", self, 1 );
@@ -217,17 +217,17 @@ function CGameStartLua:OnCreated()
 	self.m_WndClanMemberOpr = CWndClanMemberOpr:new( "gui/cfg/fsj_jiazu_xuanxiang.gui", self, 1 );
 	self.m_WndClanMemberOpr1 = CWndClanMemberOpr:new("gui/cfg/fsj_jiazu_xuanxiang2.gui", self, 1 );
 
-	-- ÉÌ³Ç
+	-- å•†åŸ
 	self.m_pWndShop = CWndShop:new( "gui/cfg/fsj_chongzhi.gui", self, 2 );
 	self.m_pWndVip = CWndVip:new( "gui/cfg/fsj_huiyuan.gui", self, 1 );
 	self.m_pWndFirstChargetPrize = CWndFristChargePrize:new( "gui/cfg/fsj_shouchong.gui", self, 2 );
 
-	-- ÉÌ³ÇÏà¹Ø
+	-- å•†åŸç›¸å…³
 	self.m_pBtnVip:AddClickListener( "OpenVipWnd", self );
 	self.m_pWndDiamondAdd:AddClickListener( "OpenDiamondShop", self );
 	self.m_pBtnFristChargePrize:AddClickListener( "OpenFirstChargePrize", self );
 
-	--»î¶¯Ïà¹Ø
+	--æ´»åŠ¨ç›¸å…³
 	self.m_pWndActivity = CActivityWnd:new( "gui/cfg/fsj_huodong.gui", self, 1 );
 	--self.m_pWndActivity:AddActionListener( "OnClickActivity", self );
 
@@ -244,22 +244,22 @@ function CGameStartLua:OnCreated()
 
 	self.m_wndRhythmGuide = CRhythmGuideWnd:new( "gui/cfg/fsj_jiaoxuexuanxiang2.gui", self, 1 );
 
-	--ÉèÖÃwifi
-	self.m_wifiIcon = {self:GetDlgChild("wifi.icon_3"),self:GetDlgChild("wifi.icon_2"),self:GetDlgChild("wifi.icon_1")};--Èõµ½Ç¿
+	--è®¾ç½®wifi
+	self.m_wifiIcon = {self:GetDlgChild("wifi.icon_3"),self:GetDlgChild("wifi.icon_2"),self:GetDlgChild("wifi.icon_1")};--å¼±åˆ°å¼º
 	self.m_timeTick = CTick:new ( "OnTimeTick", self );
 
 	self.m_tickLocalTimeMinute = CTick:new( "OnMinuteTick", self );
 
-	-- ÏÔÊ¾Debug¿ò  
+	-- æ˜¾ç¤ºDebugæ¡†  
 	self.m_pWndDebug = self:GetDlgChild( "wifi" );
 	self.m_pWndDebug:AddEventListener( WM_LBUTTONDOWN, "OnClickDebug", self );
 
-	--Èü¼¾ÌáĞÑ
+	--èµ›å­£æé†’
 	self.m_pWndNewSeasonComing = CNewSeasonComing:new( "gui/cfg/fsj_saijijieshutips.gui", self, 1 );
 
-	--¸÷½çÃæÌáÊ¾¿ò
+	--å„ç•Œé¢æç¤ºæ¡†
 	self.m_pWndTip = CTipWnd:new( "gui/cfg/fsj_tongyongshuoming.gui", g_App:GetGUIMgr():GetRootWnd(), 1 );
-	--ÌØ»İ»î¶¯Àñ°ü
+	--ç‰¹æƒ æ´»åŠ¨ç¤¼åŒ…
 	self.m_pWndSpecialOffer = CWndSpecialOffer:new( "gui/cfg/fsj_yunying_cuxiao.gui", self, 1 );
 
 	self:UpdateIMDesc();
@@ -371,7 +371,7 @@ function CGameStartLua:UpdateIMDesc()
 	self.m_descFriend:SetWndText( nCount );
 end
 
-function CGameStartLua:OnClickTaskBtn()  --»î¶¯¹¦ÄÜ
+function CGameStartLua:OnClickTaskBtn()  --æ´»åŠ¨åŠŸèƒ½
 --	local worldConn = g_App:GetWorldConn();
 --	if not worldConn then
 		--g_App:HideMsg( g_App:GetString( "weikaifangtishi2" ) );
@@ -383,7 +383,7 @@ function CGameStartLua:OnClickTaskBtn()  --»î¶¯¹¦ÄÜ
 end
 
 function CGameStartLua:OnClickSkillDevelop()
-	--Î´¿ªÆôÍÅÕ½Ä£Ê½£¬´ËÊ±Ö±½Óµ¯³öÌáÊ¾
+	--æœªå¼€å¯å›¢æˆ˜æ¨¡å¼ï¼Œæ­¤æ—¶ç›´æ¥å¼¹å‡ºæç¤º
 	local bCanUseSkill = g_App:CouldUseSkill();
 	if not bCanUseSkill then
 		g_App:HideMsg( g_App:GetString( "jinengtips1" ) );
@@ -435,7 +435,7 @@ function CGameStartLua:OnMinuteTick()
 end
 
 function CGameStartLua:OnHourChange( nHourTime )
-	--³é½±Ê±¼äµ½ÁË
+	--æŠ½å¥–æ—¶é—´åˆ°äº†
 	for i = 1, g_tblTabFile.day_roll_activity.nRowCount do
 		if nHourTime == g_tblTabFile.day_roll_activity:GetRow( i ).nStarthour then
 			self.m_bCanRoll = true;
@@ -690,13 +690,13 @@ function CGameStartLua:RefreshLadder()
 	print( "111111 CGameStartLua:RefreshLadder()", nAllStar, nLevelStar );
 	local szName = CStarLevelConfig.Inst():GetName( nAllStar );
 	self.m_pWndLevel:SetWndText( szName );
-	for i = 1, 5 do		--×î¶à5ĞÇ
+	for i = 1, 5 do		--æœ€å¤š5æ˜Ÿ
 		local WndStar = self:GetDlgChild( "wanjiaxinxi.icon_star"..i );
 		if not WndStar then return; end
 		WndStar:ShowWnd( i <= nLevelMaxStar );
 		WndStar:EnableWnd( i <= nLevelStar );
 	end
-	for i = 1, 8 do		--8ÖÖ´ó¶ÎÎ»
+	for i = 1, 8 do		--8ç§å¤§æ®µä½
 		local WndLadder = self:GetDlgChild( "wanjiaxinxi.icon_duanwei."..i );
 		if not WndLadder then return; end
 		WndLadder:ShowWnd( tblLadder[nLadderLevel] == i );
@@ -736,12 +736,12 @@ function CGameStartLua:OnSetting()
 	self.m_pSettingWnd:ShowAndSetFocus();
 end
 
-function CGameStartLua:OnEnterEndless()--1Ö÷Ò³ÃæµÄÎŞ¾¡Ä£Ê½
+function CGameStartLua:OnEnterEndless()--1ä¸»é¡µé¢çš„æ— å°½æ¨¡å¼
 	self.m_nRoomType = eRT_Endless;
 	self:EnterRoom();
 end
 
-function CGameStartLua:OnEnterLimitTime()--2Ö÷Ò³ÃæÕæÈËÄ£Ê½
+function CGameStartLua:OnEnterLimitTime()--2ä¸»é¡µé¢çœŸäººæ¨¡å¼
 	--CRhythmGuide:Inst():Start();
 	self.m_nRoomType = eRT_LimitTime;
 	local NetMsg = CCheckEnterRoom:new();
@@ -749,7 +749,7 @@ function CGameStartLua:OnEnterLimitTime()--2Ö÷Ò³ÃæÕæÈËÄ£Ê½
 	g_App:SendShellMsg( NetMsg );
 end
 
-function CGameStartLua:CreateEnterTeam()--3Ö÷Ò³ÃæµÄÍÅ¶ÓÅÅÃûÄ£Ê½
+function CGameStartLua:CreateEnterTeam()--3ä¸»é¡µé¢çš„å›¢é˜Ÿæ’åæ¨¡å¼
 	self.m_nRoomType = eRT_Team;
 	local NetMsg = CCheckEnterRoom:new();
 	NetMsg.m_nRoomType = self.m_nRoomType;
@@ -763,7 +763,7 @@ function CGameStartLua:EnterRoom()
 	self.m_pBtnTeam:RemoveEffect( "shouzhi" );
 end
 
-function CGameStartLua:OnFriend() --½çÃæÏÂ±ßµÄÉç½»
+function CGameStartLua:OnFriend() --ç•Œé¢ä¸‹è¾¹çš„ç¤¾äº¤
     self:ShowPage( self.m_pFriendWnd );
 end
 
@@ -785,11 +785,11 @@ function CGameStartLua:GetTeamWnd( nType )
     end
 end
 
-function CGameStartLua:OnClickHead()--×óÉÏ½ÇÍæ¼ÒĞÅÏ¢
+function CGameStartLua:OnClickHead()--å·¦ä¸Šè§’ç©å®¶ä¿¡æ¯
     g_App:ShowPlayerInfo( g_App:GetAccountID() );
 end
 
-function CGameStartLua:OnClickRanking()		--ÅÅĞĞ°ñ£¬Íæ¼Ò
+function CGameStartLua:OnClickRanking()		--æ’è¡Œæ¦œï¼Œç©å®¶
 	if self.m_pRankWnd ~= nil then
 		self.m_pRankWnd:ShowWnd( true );
 	end
@@ -799,7 +799,7 @@ function CGameStartLua:GetHeadWnd()
 	return self.m_pHeadWnd;
 end
 
-function CGameStartLua:OpenShareWnd()  --·ÖÏí¹¦ÄÜÌáÊ¾
+function CGameStartLua:OpenShareWnd()  --åˆ†äº«åŠŸèƒ½æç¤º
 	if not g_App:IsGameSwitch( eGameSwitch_Share ) then
 		return g_App:HideMsg( g_App:GetString( "fenxiangweikaiqi" ) );
 	end
@@ -809,7 +809,7 @@ function CGameStartLua:OpenShareWnd()  --·ÖÏí¹¦ÄÜÌáÊ¾
 	self.m_pShareWnd:ShowAndSetFocus();
 end
 
-function CGameStartLua:OnClickMusic()--ÒôÀÖÍ¼±ê
+function CGameStartLua:OnClickMusic()--éŸ³ä¹å›¾æ ‡
     self:ShowPage( self.m_WndMusic );
 end
 
@@ -829,7 +829,7 @@ function CGameStartLua:GetMusicWnd()
 	return self.m_WndMusic;
 end
 
-function CGameStartLua:OnClickSkin()--½çÃæÏÂÃæµÄÆ¤·ô
+function CGameStartLua:OnClickSkin()--ç•Œé¢ä¸‹é¢çš„çš®è‚¤
 	g_App:GetIniFile():WriteInteger( "Setting", "FaceTip", 0 );
 	g_App:GetIniFile():Save();
 	self.m_wndTipsFace:ShowWnd( false );
@@ -840,7 +840,7 @@ function CGameStartLua:GetSkinWnd()
 	return self.m_pSkinWnd;
 end
 
-function CGameStartLua:OnClickGuide() --½çÃæÓÒ±ßµÄĞÂÊÖÖ¸Òı
+function CGameStartLua:OnClickGuide() --ç•Œé¢å³è¾¹çš„æ–°æ‰‹æŒ‡å¼•
 	self.m_pWndVideoOrGuide:ShowWnd( true );
 end
 
@@ -851,11 +851,11 @@ end
 function CGameStartLua:HintEnterGame( nRoomType )
 	local pWnd = nil;
 
-	if nRoomType == eRT_Endless then  --ÎŞ¾¡Ä£Ê½
+	if nRoomType == eRT_Endless then  --æ— å°½æ¨¡å¼
 		pWnd = self.m_pBtnEndless;
-	elseif nRoomType == eRT_LimitTime then --ÕæÈËÄ£Ê½
+	elseif nRoomType == eRT_LimitTime then --çœŸäººæ¨¡å¼
 		pWnd = self.m_pBtnLimitTime;
-	elseif nRoomType == eRT_Team then  --ÍÅ¶ÓÅÅÃûÄ£Ê½
+	elseif nRoomType == eRT_Team then  --å›¢é˜Ÿæ’åæ¨¡å¼
 		pWnd = self.m_pBtnTeam;
 	end
 
@@ -878,7 +878,7 @@ function CGameStartLua:RefreshRankData( Event )
 	end
 end
 
-function CGameStartLua:RefreshRankWnd()		--Ë¢ĞÂ½çÃæ×ó²àµÄ¶ÎÎ»ÅÅĞĞ
+function CGameStartLua:RefreshRankWnd()		--åˆ·æ–°ç•Œé¢å·¦ä¾§çš„æ®µä½æ’è¡Œ
 	local tblCurRankData = g_App:GetRankDataMgr():GetFolloweesRankData();
 	local nNum = #tblCurRankData > 3 and 3 or #tblCurRankData;
 	for i = 1, 3 do

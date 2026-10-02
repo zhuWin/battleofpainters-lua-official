@@ -57,8 +57,8 @@ function CSendIMNewMessage:Ctor()
 end
 
 function CSendIMNewMessage:OnPack( Buffer )
-	-- nTargetId		收消息的人（特殊的，0为世界消息）
-	-- szContent		消息内容（文字、语音路径、图片路径）
+	-- nTargetId		鏀舵秷鎭殑浜猴紙鐗规畩鐨勶紝0涓轰笘鐣屾秷鎭級
+	-- szContent		娑堟伅鍐呭锛堟枃瀛椼�佽闊宠矾寰勩�佸浘鐗囪矾寰勶級
 	Buffer:WriteUint64( self.nTargetId );
 	Buffer:WriteUTFBytes( self.szContent );
 end

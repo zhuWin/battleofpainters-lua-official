@@ -5,7 +5,7 @@ local s_tblRoot = s_tblCurLoaded
 local s_require = require;
 local s_nCurTime = GetGammaTime()
 
---ÖØÔØrequire
+--é‡è½½require
 require = function( szName )
 	szName = AsyncRequire( szName )
 	if s_tblAllLoaded[szName] then
@@ -16,21 +16,21 @@ require = function( szName )
 	s_tblAllLoaded[szName] = tblLoading;
 end
 
---¼ì²éÄ³¸öluaÎÄ¼şÊÇ·ñ¼ÓÔØÍê±Ï
+--æ£€æŸ¥æŸä¸ªluaæ–‡ä»¶æ˜¯å¦åŠ è½½å®Œæ¯•
 function CheckGameClientNode( tblCheck )
-	--ÒÑ¾­¼ÓÔØÁËluaÎÄ¼şµ«ÊÇ»¹Ã»ÔËĞĞ
+	--å·²ç»åŠ è½½äº†luaæ–‡ä»¶ä½†æ˜¯è¿˜æ²¡è¿è¡Œ
 	if tblCheck.m_luaBlock ~= s_funCompleted then
 		s_tblCurLoaded = tblCheck;
 		tblCheck.m_luaBlock();
 		tblCheck.m_luaBlock = s_funCompleted;
 	end
 	
-	--µ¥´ÎÊ±¼ä²»ÄÜÌ«³¤
+	--å•æ¬¡æ—¶é—´ä¸èƒ½å¤ªé•¿
 	if GetGammaTime() - s_nCurTime > 50 then
 		return false;
 	end
 	
-	--°´Ë³Ğò´¦Àí×ÓÎÄ¼ş
+	--æŒ‰é¡ºåºå¤„ç†å­æ–‡ä»¶
 	local tblChild = tblCheck.m_tblChildList[tblCheck.m_nCheckIndex];
 	while tblChild do
 		if not tblChild.m_bComplete then
@@ -47,7 +47,7 @@ function CheckGameClientNode( tblCheck )
 		end
 	end
 
-	--×Ô¼ººÍËùÓĞ×ÓÎÄ¼şÈ«²¿¼ÓÔØÍê±Ï
+	--è‡ªå·±å’Œæ‰€æœ‰å­æ–‡ä»¶å…¨éƒ¨åŠ è½½å®Œæ¯•
 	tblCheck.m_bComplete = true;
 	return true;
 end
@@ -58,7 +58,7 @@ function OnGameClientLoaded( szFileName )
 	end
 
 	if szFileName then
-		--Ò»¸öÎÄ¼ş¼ÓÔØÍê±Ï
+		--ä¸€ä¸ªæ–‡ä»¶åŠ è½½å®Œæ¯•
 		local tblCurLoaded = s_tblAllLoaded[szFileName]
 		tblCurLoaded.m_szFileName = szFileName;
 		tblCurLoaded.m_luaBlock = loadfile( szFileName )
@@ -68,7 +68,7 @@ function OnGameClientLoaded( szFileName )
 		return false;
 	end
 
-	--¼ÓÔØÍê±ÏÇå³ıÊı¾İ
+	--åŠ è½½å®Œæ¯•æ¸…é™¤æ•°æ®
 	require = s_require;
 	s_funCompleted = nil;
 	s_tblCurLoaded = nil;

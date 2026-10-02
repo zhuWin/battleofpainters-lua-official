@@ -188,7 +188,7 @@ end
 
 
 ------------------------------------------------------
--- 以下开始为即时通讯代码
+-- 浠ヤ笅寮�濮嬩负鍗虫椂閫氳浠ｇ爜
 ------------------------------------------------------
 function CAnswerIMNewWorldMessage:OnUnpack( pBuffer )
     self.nAccountID = pBuffer:ReadUint64();

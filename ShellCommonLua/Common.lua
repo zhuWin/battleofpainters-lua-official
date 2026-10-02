@@ -1,7 +1,7 @@
 --region ShellCommon.lua
 --Date 2015-12-15
 
-----------------------°üº¬ÎÄ¼ş----------------------
+----------------------åŒ…å«æ–‡ä»¶----------------------
 require "misc/CBufferStream"
 require "misc/CEventDispatcher"
 require "misc/ConfigLoadHelp"

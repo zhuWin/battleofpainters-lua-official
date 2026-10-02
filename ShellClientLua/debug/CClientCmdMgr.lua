@@ -43,7 +43,7 @@ function CClientCmdMgr:CheckSpecialCmd( szInputText )
 				return;
 			end
 			if sType == "/w " then
-				--·¢¸øworld
+				--å‘ç»™world
 				if not g_App:GetWorldConn() then
 					return;
 				end

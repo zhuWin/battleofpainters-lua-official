@@ -59,7 +59,7 @@ function DumpBuffer( Buffer, nStartPos, nLen )
 	print( strResult );
 end
 
---±È½ÏÁ½¸öÈÕÆÚ´óĞ¡£¬STime1´óÓÚSTime2·µ»Ø1£¬µÈÓÚ·µ»Ø0£¬ Ğ¡ÓÚ·µ»Ø-1
+--æ¯”è¾ƒä¸¤ä¸ªæ—¥æœŸå¤§å°ï¼ŒSTime1å¤§äºSTime2è¿”å›1ï¼Œç­‰äºè¿”å›0ï¼Œ å°äºè¿”å›-1
 function CompareDate( STime1, STime2 )
     if STime1:m_nYear() > STime2:m_nYear() then
         return 1;
@@ -77,8 +77,8 @@ function CompareDate( STime1, STime2 )
     return -1;
 end
 
---×Ö·û´®·Ö¸îº¯Êı
---´«Èë×Ö·û´®ºÍ·Ö¸ô·û£¬·µ»Ø·Ö¸îºóµÄtable
+--å­—ç¬¦ä¸²åˆ†å‰²å‡½æ•°
+--ä¼ å…¥å­—ç¬¦ä¸²å’Œåˆ†éš”ç¬¦ï¼Œè¿”å›åˆ†å‰²åçš„table
 function SplitStr( str, delimiter )
 	if not str or str == "" or not delimiter then
 		return {};
@@ -91,7 +91,7 @@ function SplitStr( str, delimiter )
     return result;
 end
 
---½«º¯ÊıĞÎÊ½µÄ
+--å°†å‡½æ•°å½¢å¼çš„
 function GetFuncAndParam( szFuncDes )
 	if not szFuncDes then return end;
 
@@ -112,14 +112,14 @@ function GetFuncAndParam( szFuncDes )
 	return { Func = sFunName or szFuncDes, Parms = tblParam };
 end
 
--- ·´Ğò²éÕÒ×Ö·û£¬·µ»ØÎ»ÖÃ
+-- ååºæŸ¥æ‰¾å­—ç¬¦ï¼Œè¿”å›ä½ç½®
 function ReverseFind( szStr, char )
 	local nIndex = string.find( string.reverse(szStr), char );
 	return string.len( szStr ) - nIndex + 1;
 end
 
 
---°´keyË³Ğò±éÀú
+--æŒ‰keyé¡ºåºéå†
 function PairsByKeysAsc( tbl )
 	local a = {};
 	for k in pairs( tbl ) do
@@ -133,7 +133,7 @@ function PairsByKeysAsc( tbl )
 	end
 end
 
---°´keyÄæĞò±éÀú
+--æŒ‰keyé€†åºéå†
 function PairsByKeysDesc( tbl )
 	local a = {};
 	for k in pairs( tbl ) do
@@ -147,7 +147,7 @@ function PairsByKeysDesc( tbl )
 	end
 end
 
---»ñÈ¡tbl×îĞ¡Öµ
+--è·å–tblæœ€å°å€¼
 function table.minn( tbl )
 	local iter = PairsByKeysAsc(tbl);
 	return iter();
@@ -288,7 +288,7 @@ function GetRandom( Min, Max )
 	return ( nRandom*( Max - Min )/0x8000 + Min );
 end
 
--- Ã¶¾ÙC++³£Á¿  
+-- æšä¸¾C++å¸¸é‡  
 function EnumLua( n ) 
 	return n;
 end

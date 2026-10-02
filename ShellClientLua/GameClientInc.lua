@@ -1,7 +1,7 @@
 --region CGameClientInc.lua
 --Date 2015-12-07
 
---¿ò¼Ü
+--æ¡†æž¶
 CGameClient = class( CGameAppClient, CEventDispatcher );
 CItemCreateHandler = class ( ITableItemCreateHandler );
 CGammaResListener = class( IGammaResListener );

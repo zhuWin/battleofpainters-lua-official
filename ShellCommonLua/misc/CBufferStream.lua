@@ -17,7 +17,7 @@ function CBufferStream:ReadUTF32()
 	return self:ReadUTFBytes( nCount );
 end
 
--- C++½αΉΉΜε
+-- C++η»“ζ„δ½“
 function UnpackStruScore( pBuffer )
 	local tblData = {};
 	tblData.nAllScore		= pBuffer:ReadUint32();

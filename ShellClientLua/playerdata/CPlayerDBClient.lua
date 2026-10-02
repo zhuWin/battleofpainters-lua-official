@@ -52,20 +52,20 @@ function CPlayerDBClient:UpdateFromServer( Buffer, nBlockIndex, nDiffCount )
 		local nSize = Buffer:ReadUint16();
 		local nTargetOffset = BlockData.offset2BufferStart + nOffset;
 		Buffer:ReadBytes( BufferData, nTargetOffset, nSize );
-		--¼ì²éÕìÌı
-		local nS1 = nOffset;			--¸üĞÂÊı¾İµÄÆğÊ¼
-		local nE1 = nOffset + nSize;	--¸üĞÂÊı¾İµÄÄ©Î²
+		--æ£€æŸ¥ä¾¦å¬
+		local nS1 = nOffset;			--æ›´æ–°æ•°æ®çš„èµ·å§‹
+		local nE1 = nOffset + nSize;	--æ›´æ–°æ•°æ®çš„æœ«å°¾
 		for i = 1, #aryMemberInfo do
 			local Info = aryMemberInfo[i];
 			local nTypeSize = Info[2];
-			for j = 0, Info[4] and Info[4] - 1 or 0 do	--ÀïÃæÊÇ´¦ÀíÊı×éµÄ
-				local nS2 = Info[1] + nTypeSize * j;		--Ñ°ÕÒÊı¾İµÄÆğÊ¼
-				local nE2 = Info[1] + nTypeSize * (j + 1);				--Ñ°ÕÒÊı¾İµÄÄ©Î²
+			for j = 0, Info[4] and Info[4] - 1 or 0 do	--é‡Œé¢æ˜¯å¤„ç†æ•°ç»„çš„
+				local nS2 = Info[1] + nTypeSize * j;		--å¯»æ‰¾æ•°æ®çš„èµ·å§‹
+				local nE2 = Info[1] + nTypeSize * (j + 1);				--å¯»æ‰¾æ•°æ®çš„æœ«å°¾
 				if nE1 <= nS2 then
 					break;
 				end
 				if nS1 < nE2 then
-					--ÓĞ½»¼¯,¼ÓÈëÅÉ·¢ÁĞ±í
+					--æœ‰äº¤é›†,åŠ å…¥æ´¾å‘åˆ—è¡¨
 					if Info[5] then
 						local key;
 						local DataFromAry = BlockData["Get"..Info[3]]( BlockData, j );
@@ -134,7 +134,7 @@ function CPlayerDBClient:DispatchEvent( Event )
 end
 
 -----------------------------------------------------------------------
--- Êı¾İ²Ù×÷º¯Êı
+-- æ•°æ®æ“ä½œå‡½æ•°
 -----------------------------------------------------------------------
 
 local s_prize_type_world = 0;

@@ -107,7 +107,7 @@ function CPlayerClientLua:NotifySimple32PropertyChanged( eDataType, nValue, nPre
 		WndProgress:SetPos( nCurLevelExp );		
 		--print( "11111111111 CPlayerClientLua:NotifySimple32PropertyChanged", nLevel, nMaxLevelExp, nCurLevelExp );
 	elseif eDataType == eSPT32_Level and nValue > nPreValue then
-		if g_App:GetGameMain().m_bIsDie then	--±ÜÃâÖØÉúÊ±ÏÔÊ¾ÌØĞ§  
+		if g_App:GetGameMain().m_bIsDie then	--é¿å…é‡ç”Ÿæ—¶æ˜¾ç¤ºç‰¹æ•ˆ  
 			g_App:GetGameMain().m_bIsDie = false;
 			return;
 		end
@@ -133,7 +133,7 @@ function CPlayerClientLua:NotifySimple32PropertyChanged( eDataType, nValue, nPre
 		table.insert( self.m_tblLevelUpEffect, LevelUpEffect1 );
 		self:StartLevelUpTbl();
 
-		--ÌØĞ§±ØĞë·ÅÕâÀï£¬·ñÔò·ÅÔÚonÊÂ¼şÄÚÔòË³Ğò´íÎó  
+		--ç‰¹æ•ˆå¿…é¡»æ”¾è¿™é‡Œï¼Œå¦åˆ™æ”¾åœ¨onäº‹ä»¶å†…åˆ™é¡ºåºé”™è¯¯  
 		local nActiveSkillID = g_App:GetMainPlayerData().m_CharBaseData:GetSkillID();
 		local nActiveLevel = self:GetSceneSkillTopLevel( nActiveSkillID, nValue );
 		local nActivePreLevel = self:GetSceneSkillTopLevel( nActiveSkillID, nPreValue );

@@ -5,12 +5,12 @@ function CEventDispatcher:ctor()
 	self.m_nDispatchDepth = 0;
 end
 
---´´½¨Ò»¸öÊÂ¼ş
+--åˆ›å»ºä¸€ä¸ªäº‹ä»¶
 function CEventDispatcher:CreateEvent( Type, Target, Param )
 	return { m_Type = Type, m_Target = Target, m_Param = Param }; 
 end
 
---ÒÆ³ıËùÓĞ¼àÌı
+--ç§»é™¤æ‰€æœ‰ç›‘å¬
 function CEventDispatcher:RemoveAllEventListener( Type )
 	if self.m_mapEventListener == nil then
 		return;
@@ -22,7 +22,7 @@ function CEventDispatcher:RemoveAllEventListener( Type )
 	end
 end
 
---Ìí¼Ó¼àÌı
+--æ·»åŠ ç›‘å¬
 function CEventDispatcher:AddEventListener( Type, funHandler, pHandler )
 	if funHandler == nil then
 		return;
@@ -56,7 +56,7 @@ function CEventDispatcher:AddEventListener( Type, funHandler, pHandler )
 	end
 end
 
---ÒÆ³ıÖ¸¶¨¼àÌı
+--ç§»é™¤æŒ‡å®šç›‘å¬
 function CEventDispatcher:RemoveEventListener( Type, funHandler, pHandler )
 	if funHandler == nil then
 		return;
@@ -89,7 +89,7 @@ function CEventDispatcher:RemoveEventListener( Type, funHandler, pHandler )
 	end
 end
 
---¼àÌıÊÇ·ñ´æÔÚ
+--ç›‘å¬æ˜¯å¦å­˜åœ¨
 function CEventDispatcher:HasEventListener( Type, funHandler, pHandler )
 	if self.m_mapEventListener == nil then
 		return false;
@@ -114,7 +114,7 @@ function CEventDispatcher:HasEventListener( Type, funHandler, pHandler )
 	end
 end
 
---ÅÉ·¢ÊÂ¼ş
+--æ´¾å‘äº‹ä»¶
 function CEventDispatcher:DispatchEvent( Event )
 
 	if self.m_mapEventListener == nil then

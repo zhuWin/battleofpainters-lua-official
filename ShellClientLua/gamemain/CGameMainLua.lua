@@ -565,7 +565,7 @@ function CGameMainLua:UpdateTrackTip( nDirectorID, tblRankData, pScene )
 	local rectWnd = CFRect:new( 0, 0, nRootWidth - TrackWndWidth, nRootHeight - TrackWndHeight);
 	local vecCenter = CVector2f:new( nRootWidth / 2, nRootHeight / 2 );
 	-- local Scene = g_App:GetScene()
-	--ÅĞ¶Ï·¿¼äÀàĞÍ
+	--åˆ¤æ–­æˆ¿é—´ç±»å‹
 	local nRoomType =  pScene:GetRoomType();
 	if nRoomType == eRT_Team or nRoomType == eRT_TeamSecret then
 		local tblPlayerInfo = pScene.m_tblPlayerInfo;
@@ -675,7 +675,7 @@ function CGameMainLua:TyroTipHelp( nIndex, bShow )	--EMainUITip
 	if bShow then
 		local bAdd = true;
 
-		--É¾³ıÆäËû¿¿tickÉ¾³ıµÄÌáÊ¾  
+		--åˆ é™¤å…¶ä»–é tickåˆ é™¤çš„æç¤º  
 		local tblTemp = {};
 		for i = 1, #self.m_tblTip do
 			--if self.m_tblTip[i] < eMUT_TickDisappear or ( nIndex >= eMUT_TickDisappear and self.m_tblTip[i] == nIndex ) then
@@ -685,7 +685,7 @@ function CGameMainLua:TyroTipHelp( nIndex, bShow )	--EMainUITip
 		end
 		self.m_tblTip = tblTemp;		
 
-		--Èô¶ÓÁĞÒÑ´æÔÚ£¬Ôò²»¼ÌĞøÖ´ĞĞ£¬·ñÔò¼ÓÈë¶ÓÁĞÖĞ  
+		--è‹¥é˜Ÿåˆ—å·²å­˜åœ¨ï¼Œåˆ™ä¸ç»§ç»­æ‰§è¡Œï¼Œå¦åˆ™åŠ å…¥é˜Ÿåˆ—ä¸­  
 		for i = 1, #self.m_tblTip do
 			if self.m_tblTip[i] == nIndex then
 				bAdd = false;
@@ -933,7 +933,7 @@ end
 
 function CTyroWnd:OnCreated()
 	self.m_wndContent = self:GetDlgChild( "you.neirong1" );
-	self.m_nLastTipIndex = eMUT_Init;		--¼ÇÂ¼ÉÏ´ÎÌáÊ¾µÄÀàĞÍ
+	self.m_nLastTipIndex = eMUT_Init;		--è®°å½•ä¸Šæ¬¡æç¤ºçš„ç±»å‹
 	self:ShowWnd( false );
 end
 
@@ -1014,7 +1014,7 @@ function CWndMainRank1:UpdateRank( nDirectorID, tblRankData, nCount, pScene )
 				pScore:SetWndText( string.format( "%0.1f", tblRankData[i].m_nCalAllScore * 100 ) .. "%" );
 			end
 
-			--¸üĞÂ¾ÖÄÚÅÅĞĞĞÅÏ¢
+			--æ›´æ–°å±€å†…æ’è¡Œä¿¡æ¯
 			if pScene:GetRoomType() ~= eRT_LimitSecret and pScene:GetRoomType() ~= eRT_TeamSecret
 				and pScene:GetRoomType() ~= eRT_LimitRace and pScene:GetRoomType() ~= eRT_TeamRace then
 				self.pWndSelfRank:UpdateScore( tblRankData[i].m_nCalAllScore );
@@ -1113,7 +1113,7 @@ function CWndMainRank2:UpdateRank( nDirectorID, tblRankData, nCount, pScene )
 		if tblPlayerInfo and tblRankData[i].m_nObjectID == nDirectorID then
 			pScore:SetWndText( tblRankData[i].m_nCalAllScore );
 
-			--¸üĞÂ¾ÖÄÚÅÅĞĞĞÅÏ¢
+			--æ›´æ–°å±€å†…æ’è¡Œä¿¡æ¯
 			if pScene:GetRoomType() ~= eRT_LimitSecret and pScene:GetRoomType() ~= eRT_TeamSecret
 				and pScene:GetRoomType() ~= eRT_LimitRace and pScene:GetRoomType() ~= eRT_TeamRace then
 				self.pWndSelfRank:UpdateScore( tblRankData[i].m_nCalAllScore );
@@ -1158,8 +1158,8 @@ function CWndMainRank3:UpdateScore( nScore )
 		nTodayType = eGradeType_TeamToday;
 	end
 	local tblRankData = g_App:GetCurRankData( nTodayType );
-	local nShowScore = 0;			--ÏÔÊ¾µÄ·ÖÊı
-	local szShowName = "";					--ÏÔÊ¾µÄÃû×Ö
+	local nShowScore = 0;			--æ˜¾ç¤ºçš„åˆ†æ•°
+	local szShowName = "";					--æ˜¾ç¤ºçš„åå­—
 	if not tblRankData then return end
 
 	if nScore == 0 then

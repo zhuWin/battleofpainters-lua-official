@@ -417,7 +417,7 @@ function CHeadWnd:UpdateLevelWnd( nCurIndex, nLadderLevel, nLevelHaveStar )
 		nCurHaveStar = CStarLevelConfig.Inst():GetStarOnLevel( nAllStar );
 	end
 
-	-- ¼ÆËãÏÔÊ¾ĞÇÊı
+	-- è®¡ç®—æ˜¾ç¤ºæ˜Ÿæ•°
 	if nCurIndex == nMaxLevel then
 		self.m_pWndLegendCount:SetWndText( bCurLevel and nLevelHaveStar or 0 );
 	elseif nCurHaveStar ~= 0 then
@@ -450,7 +450,7 @@ function CHeadWnd:UpdateLevelWnd( nCurIndex, nLadderLevel, nLevelHaveStar )
 	self.m_pWndLevelName:SetWndText( szName );
 	self.m_pWndLevelDesc:SetWndText( szDesc );
 
-	--½±Àø
+	--å¥–åŠ±
 	local tblPrize = SplitStr( CStarLevelConfig:Inst():GetSeasonPrizeStrByLevel( nCurIndex ), "," );
 	for i = 1, #self.m_tblPrize do
 		self.m_tblPrize[i]:ShowWnd( false );
@@ -709,7 +709,7 @@ function CWndCutPicture:OnClickClose()
 end
 
 function CWndCutPicture:OnClickUpload()
-	--¼ÆËãÍ¼Æ¬ÔÚÓĞĞ§ÇøÓòÄÚµÄ±ß½ç
+	--è®¡ç®—å›¾ç‰‡åœ¨æœ‰æ•ˆåŒºåŸŸå†…çš„è¾¹ç•Œ
 	local nPictureWidth = self.m_WndPicture:GetWndWidth();
 	local nPictureHeight = self.m_WndPicture:GetWndHeight();
 	local nTargetX = self.m_WndPicture:GetLocalX();
@@ -813,7 +813,7 @@ end
 
 
 ------------------------------------------------------------------------------
-------------- ÕÕÆ¬ListItem
+------------- ç…§ç‰‡ListItem
 ------------------------------------------------------------------------------
 function CPhotoItem:Ctor( sResName, ParentWnd, nLoadType )
 	CGWnd.Ctor( self, sResName, ParentWnd, nLoadType );
@@ -858,13 +858,13 @@ function CPhotoItem:DownloadPicture( nAccountID, nIndex )
 	end
 
 	local szPictureLoadPath = g_App:GetImgCDN() .. "uploads/user_image/" .. g_App:GetServerID() .. "/";
-	local szPhotoLoadPath = szPictureLoadPath .. "public/" .. nAccountID .. "/Photo_" .. nIndex .. ".jpg";	--ÏÈÏÂÔØÒÑÉóºËÍ¼Æ¬   
+	local szPhotoLoadPath = szPictureLoadPath .. "public/" .. nAccountID .. "/Photo_" .. nIndex .. ".jpg";	--å…ˆä¸‹è½½å·²å®¡æ ¸å›¾ç‰‡   
 	GetGammaFileMgr():Load( szPhotoLoadPath, true, false, self.m_PublicPhotoLoadListener );
 end
 
 function CPhotoItem:OnPublicPhotoLoadedEnd( this, szFileName, pBuffer, nSize )
 	if nSize == 0 then
-		--ÈôÒÑÉóºËÍ¼Æ¬²»´æÔÚ£¬ÏÈÒş²Ø¸ÃÁĞ 
+		--è‹¥å·²å®¡æ ¸å›¾ç‰‡ä¸å­˜åœ¨ï¼Œå…ˆéšè—è¯¥åˆ— 
 		self:GetParent():SetSubItemVisible( false, 0, self.m_nPictureIndex );
 		self:GetParent():SetColumnWidth( self.m_nPictureIndex, 0 );
 		if g_App:GetAccountID() == self.m_nAccountID then 

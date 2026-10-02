@@ -6,7 +6,7 @@ g_mapLoadingListener = {}
 g_mapTableLoadedHandler = {}
 g_Dictionary = CDictionary.Inst();
 
---ÅäÖÃÎÄ¼ş½øĞĞ×ÖµäÌæ»»
+--é…ç½®æ–‡ä»¶è¿›è¡Œå­—å…¸æ›¿æ¢
 function InitTableDict( tblData, tblDictHeaders, bMultiTable )
 	if not bMultiTable then
 		tblData = { tblData }
@@ -27,7 +27,7 @@ function InitTableDict( tblData, tblDictHeaders, bMultiTable )
 	end
 end
 
---ÅäÖÃÎÄ¼ş¼ÓÔØÍê±Ï»Øµ÷×¢²áº¯Êı
+--é…ç½®æ–‡ä»¶åŠ è½½å®Œæ¯•å›è°ƒæ³¨å†Œå‡½æ•°
 function OnTableLoadFinished( szFileName, tblData )	 
 	if szFileName == "scenario" then
 		print("a");
@@ -46,22 +46,22 @@ function OnTableLoadFinished( szFileName, tblData )
 	end
 end
 
---¼ÓÔØ·ÇluaÅäÖÃÎÄ¼ş
+--åŠ è½½éluaé…ç½®æ–‡ä»¶
 function LoadConfigFile( szFileName, Handler, CallBack, bSync )
    	CLoadingListener:new( szFileName, bSync, -1, Handler, CallBack );
 end
 
---¼ÓÔØluaÅäÖÃÎÄ¼ş
+--åŠ è½½luaé…ç½®æ–‡ä»¶
 function LoadLuaConfig( szFileName, Handler, CallBack, bSync )
    	CLoadingListener:new( szFileName, bSync, 0, Handler, CallBack );
 end
 
---¼ÓÔØluaÔ´ÎÄ¼ş
+--åŠ è½½luaæºæ–‡ä»¶
 function LoadLuaSource( szFileName, Handler, CallBack, bSync )
    	CLoadingListener:new( szFileName, bSync, 1, Handler, CallBack );
 end
 
--- ¼ÓÔØºê¶¨ÒåÎÄ¼ş  
+-- åŠ è½½å®å®šä¹‰æ–‡ä»¶  
 function LoadDefineFile( szFileName )
 	local LoadListener = CLoadingListener:new( szFileName, false, nil, nil );
 	LoadListener.OnLoadedEnd = function( Listener, szFileName, pBuffer, nSize )
@@ -74,7 +74,7 @@ function LoadDefineFile( szFileName )
 end
 
 function CLoadingListener:Ctor( szFileName, bSync, eLuaType, Handler, CallBack )
-	--ÒÑ¾­¼ÓÔØ¹ıµÄÎÄ¼ş²»ÖØ¸´¼ÓÔØ
+	--å·²ç»åŠ è½½è¿‡çš„æ–‡ä»¶ä¸é‡å¤åŠ è½½
 	if( g_mapLoadedFiles[szFileName] ) then
 		return;
 	end
@@ -86,8 +86,8 @@ function CLoadingListener:Ctor( szFileName, bSync, eLuaType, Handler, CallBack )
 
 	assert( type( CallBack ) ~= "string" or Handler and Handler[CallBack] );
 
-	--luaÎÄ¼şÖ§³Öreload£¬ÔÚÕâÀï×¢²á»Øµ÷
-	--ÒÔÎÄ¼şÃû×÷ÎªË÷Òı£¬Òò´ËËùÓĞluaÅäÖÃÎÄ¼ş²»ÄÜÖØÃû
+	--luaæ–‡ä»¶æ”¯æŒreloadï¼Œåœ¨è¿™é‡Œæ³¨å†Œå›è°ƒ
+	--ä»¥æ–‡ä»¶åä½œä¸ºç´¢å¼•ï¼Œå› æ­¤æ‰€æœ‰luaé…ç½®æ–‡ä»¶ä¸èƒ½é‡å
 	if self.m_eLuaType == 0 then
 		local _, _, szName = string.find( szFileName, "/([%w_]+).lua" );
 		if( szName == nil ) then
@@ -121,14 +121,14 @@ function CLoadingListener:OnLoadedEnd( szFileName, pBuffer, nSize )
     end
 	pBuffer:SetDataSize( nSize );
 
-	--luaÎÄ¼şµÄ»Øµ÷ÓÉÅäÖÃÎÄ¼ş¼ÓÔØÍê±Ïºó
-	--»Øµ÷OnTableLoadFinished´¥·¢
+	--luaæ–‡ä»¶çš„å›è°ƒç”±é…ç½®æ–‡ä»¶åŠ è½½å®Œæ¯•å
+	--å›è°ƒOnTableLoadFinishedè§¦å‘
     if self.m_eLuaType >= 0 then
         assert( pBuffer );
 		local luaBlock = loadfile( szFileName )
 		assert( luaBlock )
 		luaBlock()
-	--·ÇluaÎÄ¼şÖ±½Ó»Øµ÷
+	--éluaæ–‡ä»¶ç›´æ¥å›è°ƒ
 	elseif self.m_cbFunc then
 		if self.m_hTarget == nil then
 			self.m_cbFunc( pBuffer, nSize, szFileName )

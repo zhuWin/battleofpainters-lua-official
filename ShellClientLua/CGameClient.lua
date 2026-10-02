@@ -368,7 +368,7 @@ end
 function CGameClient:ValidateResult( Buffer, nBufferLen, nBlockDataHeadSize )
 	self:WaitMsg( false );
 	
-	-- ³õÊ¼Íæ¼ÒÊı¾İ
+	-- åˆå§‹ç©å®¶æ•°æ®
 	self.m_CharContext:InitFromCompress( Buffer, nBufferLen, nBlockDataHeadSize );
 
 	self.m_GameStart:ShowWnd( true );
@@ -520,7 +520,7 @@ function CGameClient:OnLoginSucc()
 	self.m_bGetLimitModeOpenPrize = g_App:GetFirstEvent( eFE_GetLimitModeOpenPrize );
 	self.m_bGetTeamModeOpenPrize = g_App:GetFirstEvent( eFE_GetTeamModeOpenPrize );
 
-	--´´½¨Íæ¼ÒÏÂÔØÒôÀÖÎÄ¼ş¼Ğ
+	--åˆ›å»ºç©å®¶ä¸‹è½½éŸ³ä¹æ–‡ä»¶å¤¹
 	local szPath = g_App:GetLogPath().."netmusic/";
 	local Buff = CBufferStream:new( 2048 );
 	self.m_szNetMusicCachePath = CPathMgr.ToPhysicalPath( szPath, Buff, 2000 );
@@ -560,7 +560,7 @@ function CGameClient:OnLoginSucc()
 
 	CPlayerGradeInfoMgr:Instance():QueryAllScoreNewByAccountID( g_App:GetWorldConn(), g_App:GetAccountID() );
 
-	-- ÓÎ¿ÍÉı¼¶ÌáÊ¾  
+	-- æ¸¸å®¢å‡çº§æç¤º  
 	local nGuestUpgradeEndTime = self:GetIniFile():GetInteger64( "Stat", "GuestUpgradeEndTime" );
 	if not self.m_bNewChar and GetNatureTime() > nGuestUpgradeEndTime then
 		local nLastLogin = self:GetIniFile():GetInteger64( "Stat", "LastLogin", 0 );
@@ -868,7 +868,7 @@ function CGameClient:GetRaceCost( nRaceID, nRaceType )
 end
 
 function CGameClient:Recharge( szProductID )
-	-- Éú³É¹æÔòÎª(·Ö¸ô·ûÎª¡°_¡±)£ºÇşµÀ+ÕËºÅID+µ±Ç°ºÁÃëÊ±¼ä+Ëæ»úÊı£¨0-9999£©
+	-- ç”Ÿæˆè§„åˆ™ä¸º(åˆ†éš”ç¬¦ä¸ºâ€œ_â€)ï¼šæ¸ é“+è´¦å·ID+å½“å‰æ¯«ç§’æ—¶é—´+éšæœºæ•°ï¼ˆ0-9999ï¼‰
 	local nAccountID = self:GetAccountID();
 	if nAccountID == 0 then
 		return;
@@ -903,7 +903,7 @@ function CGameClient:GetAccountLevel()
 	end
 end
 
---ÅĞ¶ÏÏŞÊ±Ä£Ê½ÊÇ·ñ¿ÉÒÔÊ¹ÓÃ¼¼ÄÜ  
+--åˆ¤æ–­é™æ—¶æ¨¡å¼æ˜¯å¦å¯ä»¥ä½¿ç”¨æŠ€èƒ½  
 function CGameClient:CouldUseSkill()
 	return g_App:GetFirstEvent( eFE_GetTeamModeOpenPrize );
 end

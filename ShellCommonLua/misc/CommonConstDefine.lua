@@ -1,4 +1,4 @@
-﻿Max_Passive_Skill_Num					= EnumLua( 5,	"/**/" )
+Max_Passive_Skill_Num					= EnumLua( 5,	"/**/" )
 Max_Limit_Player_Count					= EnumLua( 10,	"/**/" )
 Max_Team_Player_Count					= EnumLua( 12,	"/**/" )
 										  

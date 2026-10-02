@@ -15,7 +15,7 @@ function CGListCtrl:MeetItemCount( nMeetCount, guiResName, itemGUIClass, nWidth 
 	local nMaxAllCount = nMaxRowCount * nMaxColCount;
 	local bCreate = nMaxAllCount < nMeetCount;
 	if bCreate then
-	--²»¹»ÐèÒª´´½¨
+	--ä¸å¤Ÿéœ€è¦åˆ›å»º
 		local nCreateCount = nMeetCount - nMaxAllCount;
 		if nWidth then
 			local nInsertColCount = math.ceil( nCreateCount / nMaxRowCount );

@@ -195,7 +195,7 @@ function CHeadImage:LoadHeadImg( nCol )
 	self.m_nHeadIconID = eHeadIconImg_Begin_ID + nCol;
 
 	local szPictureLoadPath = g_App:GetImgCDN() .. "uploads/user_image/" .. g_App:GetServerID() .. "/";
-	local szPhotoLoadPath = szPictureLoadPath .. "public/" .. g_App:GetAccountID() .. "/Photo_" .. nCol .. ".jpg";	--ÏÈÏÂÔØÒÑÉóºËÍ¼Æ¬   
+	local szPhotoLoadPath = szPictureLoadPath .. "public/" .. g_App:GetAccountID() .. "/Photo_" .. nCol .. ".jpg";	--å…ˆä¸‹è½½å·²å®¡æ ¸å›¾ç‰‡   
 	GetGammaFileMgr():Load( szPhotoLoadPath, true, false, self.m_PublicPhotoLoadListener );
 end
 

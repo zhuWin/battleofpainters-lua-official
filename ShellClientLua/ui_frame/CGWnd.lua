@@ -18,9 +18,9 @@ local tblCueState =
 };
 	
 --nLoadType	
---= 0 Á¢¿ÌÏÔÊ¾
---= 1 ÏÈ¼ÓÔØ²»ÏÔÊ¾
---= 2 ÏÔÊ¾Ê±¼ÓÔØ
+--= 0 ç«‹åˆ»æ˜¾ç¤º
+--= 1 å…ˆåŠ è½½ä¸æ˜¾ç¤º
+--= 2 æ˜¾ç¤ºæ—¶åŠ è½½
 function CGWnd:Ctor( sResName, ParentWnd, nLoadType )
     self.m_bHasRes = sResName;
 	g_mapCGWnd[self] = self;
@@ -71,7 +71,7 @@ function CGWnd:GetDlgChild( szChildName )
 	return wndChild and WndClass( wndChild ) or nil
 end
 
---WndCheck ÊÇ·ñÊÇselfµÄleaf
+--WndCheck æ˜¯å¦æ˜¯selfçš„leaf
 function CGWnd:HasLeaf( WndCheck )
 	while( WndCheck ) do
 		if WndCheck == self then
@@ -122,7 +122,7 @@ function CGWnd:GetMouseEnabled()
 	return BitAnd( self:GetStyle(), eWS_MSGTRANSPT ) == 0;
 end
 
----------------------ºìµã-------------------
+---------------------çº¢ç‚¹-------------------
 function CGWnd:OnCueStateChanged()
 end
 
@@ -217,7 +217,7 @@ function CGWnd:ClearCueListener()
 		k.m_tblCueLisener[self] = nil;
 	end
 end
----------------------ºìµã-------------------
+---------------------çº¢ç‚¹-------------------
 
 function CGWnd:FastAddActionListenerForChild( szChildName, funHandler, pHandler )
 	local wndChild = self:GetDlgChild( szChildName );
@@ -367,13 +367,13 @@ function CGWnd:GetFullName()
 	return szName;
 end
 
---Ëõ·Å´°¿Ú
--- nScaleType: Ëõ·ÅĞ§¹ûÈçÏÂ
--- ¨J: ·Å´ó; ¨K: ËõĞ¡
+--ç¼©æ”¾çª—å£
+-- nScaleType: ç¼©æ”¾æ•ˆæœå¦‚ä¸‹
+-- â†—: æ”¾å¤§; â†˜: ç¼©å°
 --     0             1                 2                    3        
---    ¨J¨K                         ¨J¨K                        ¨J¨K       
---  ¨J    ¨K     ¨K     ¨J       ¨J     ¨K     ¨J      ¨K     ¨J    ¨K     
---                 ¨K¨J         |         ¨K¨J           ¨K¨J             
+--    â†—â†˜                         â†—â†˜                        â†—â†˜       
+--  â†—    â†˜     â†˜     â†—       â†—     â†˜     â†—      â†˜     â†—    â†˜     
+--                 â†˜â†—         |         â†˜â†—           â†˜â†—             
 --                             |      |      |                       
 --                           Speed1, Speed2, Speed3                  
 local fDefMagnifyScale = 2;

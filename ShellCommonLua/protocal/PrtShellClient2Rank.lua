@@ -6,7 +6,7 @@ end
 
 function CQueryFolloweesRank:OnPack( Buffer )
 	local tblFriend = CFriendMgr:Inst().m_tblFriends;
-	local nFriendCount = #tblFriend + 1; -- £¨ºÃÓÑ + ×Ô¼º£©µÄÊıÁ¿ 
+	local nFriendCount = #tblFriend + 1; -- ï¼ˆå¥½å‹ + è‡ªå·±ï¼‰çš„æ•°é‡ 
 	Buffer:WriteInt32( nFriendCount );
 	for k, nAccountID in pairs(tblFriend) do
 		Buffer:WriteUint64( nAccountID );
